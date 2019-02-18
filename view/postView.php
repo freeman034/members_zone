@@ -5,10 +5,10 @@
         <title>Mon blog</title>
         <link href="public/css/style.css" rel="stylesheet" />
     </head>
-        
+
     <body>
         <h1>Mon super blog !</h1>
-        <p><a href="index.php">Retour à la liste des billets</a></p>
+        <p><a href="../index.php">Retour à la liste des billets</a></p>
 
         <div class="news">
             <h3>
