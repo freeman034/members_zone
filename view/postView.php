@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Mon blog</title>
-        <link href="style.css" rel="stylesheet" /> 
+        <link href="public/css/style.css" rel="stylesheet" />
     </head>
         
     <body>
@@ -15,7 +15,7 @@
                 <?= htmlspecialchars($post['titre']) ?>
                 <em>le <?= $post['creation_date_fr'] ?></em>
             </h3>
-            
+
             <p>
                 <?= nl2br(htmlspecialchars($post['contenu'])) ?>
             </p>

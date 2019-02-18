@@ -8,7 +8,7 @@
 
         <title><?= $title ?></title>
 
-        <link href="style.css" rel="stylesheet" />
+        <link href="public/css/style.css" rel="stylesheet" />
 
     </head>
 
