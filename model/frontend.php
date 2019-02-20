@@ -38,13 +38,6 @@ function postComment($postId, $auteur, $commentaire)
 // Nouvelle fonction qui nous permet d'éviter de répéter du code
 function dbConnect()
 {
-    try
-    {
-        $db = new PDO('mysql:host=localhost;dbname=freeman034;charset=utf8', 'root', '');
-        return $db;
-    }
-    catch(Exception $e)
-    {
-        die('Erreur : '.$e->getMessage());
-    }
+    $db = new PDO('mysql:host=localhost;dbname=freeman034;charset=utf8', 'root', '');
+    return $db;
 }
