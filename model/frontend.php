@@ -20,17 +20,17 @@ function getPost($postId)
 function getComments($postId)
 {
     $db = dbConnect();
-    $comments = $db->prepare('SELECT id, auteur, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentaires WHERE post_id = ? ORDER BY comment_date DESC');
+    $comments = $db->prepare('SELECT auteur, commentaire, DATE_FORMAT(date_commentaire, \'%d/%m/%Y à %Hh%imin%ss\') AS comment_date_fr FROM commentaires WHERE id_billet = ? ORDER BY date_commentaire DESC');
     $comments->execute(array($postId));
 
     return $comments;
 }
 
-function postComment($postId, $author, $comment)
+function postComment($postId, $auteur, $commentaire)
 {
     $db = dbConnect();
-    $comments = $db->prepare('INSERT INTO comments(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-    $affectedLines = $comments->execute(array($postId, $author, $comment));
+    $comments = $db->prepare('INSERT INTO commentaires(id_billet, auteur, commentaire, date_commentaire) VALUES(?, ?, ?, NOW())');
+    $affectedLines = $comments->execute(array($postId, $auteur, $commentaire));
 
     return $affectedLines;
 }

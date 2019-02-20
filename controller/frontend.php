@@ -17,9 +17,9 @@ function post()
     require('view/frontend/postView.php');
 }
 
-function addComment($postId, $author, $comment)
+function addComment($postId, $auteur, $commentaire)
 {
-    $affectedLines = postComment($postId, $author, $comment);
+    $affectedLines = postComment($postId, $auteur, $commentaire);
 
     if ($affectedLines === false) {
         die('Impossible d\'ajouter le commentaire !');

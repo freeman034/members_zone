@@ -24,11 +24,11 @@
         <h2>Commentaires</h2>
 
         <?php
-        while ($comment = $comments->fetch())
+        while ($commentaires = $comments->fetch())
         {
         ?>
-            <p><strong><?= htmlspecialchars($comment['auteur']) ?></strong> le <?= $comment['comment_date_fr'] ?></p>
-            <p><?= nl2br(htmlspecialchars($comment['commentaire'])) ?></p>
+            <p><strong><?= htmlspecialchars($commentaires['auteur']) ?></strong> le <?= $commentaires['comment_date_fr'] ?></p>
+            <p><?= nl2br(htmlspecialchars($commentaires['commentaire'])) ?></p>
         <?php
         }
         ?>
@@ -40,17 +40,17 @@
 
             <div>
 
-                <label for="author">Auteur</label><br />
+                <label for="auteur">Auteur</label><br />
 
-                <input type="text" id="author" name="author" />
+                <input type="text" id="auteur" name="auteur" />
 
             </div>
 
             <div>
 
-                <label for="comment">Commentaire</label><br />
+                <label for="commentaire">Commentaire</label><br />
 
-                <textarea id="comment" name="comment"></textarea>
+                <textarea id="commentaire" name="commentaire"></textarea>
 
             </div>
 
