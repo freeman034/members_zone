@@ -29,10 +29,22 @@ function addComment($postId, $auteur, $commentaire)
 
     $affectedLines = $commentManager->postComment($postId, $auteur, $commentaire);
 
-    if ($affectedLines === false) {
+    if ($affectedLines === false)
+    {
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
-    else {
+    else
+    {
         header('Location: index.php?action=post&id=' . $postId);
     }
+}
+function editComment()
+{
+    $postManager = new freeman034\members_zone\Model\PostManager();
+    $commentManager = new freeman034\members_zone\Model\CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $comment = $commentManager->editComment($_GET['id']);
+
+    require('view/frontend/editcommentView.php');
 }
