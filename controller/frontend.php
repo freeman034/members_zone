@@ -1,31 +1,37 @@
 <?php
 
-require('model/frontend.php');
+// Chargement des classes
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
 
 function listPosts()
 {
-    $posts = getPosts();
+    $postManager = new freeman034\members_zone\Model\PostManager(); // Création d'un objet
+    $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
 
     require('view/frontend/listPostsView.php');
 }
 
 function post()
 {
-    $post = getPost($_GET['id']);
-    $comments = getComments($_GET['id']);
+    $postManager = new freeman034\members_zone\Model\PostManager();
+    $commentManager = new freeman034\members_zone\Model\CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager->getComments($_GET['id']);
 
     require('view/frontend/postView.php');
 }
 
-function addComment($postId, $author, $comment)
+function addComment($postId, $auteur, $commentaire)
 {
-    $affectedLines = postComment($postId, $author, $comment);
+    $commentManager = new freeman034\members_zone\Model\CommentManager();
+
+    $affectedLines = $commentManager->postComment($postId, $auteur, $commentaire);
 
     if ($affectedLines === false) {
-        // Erreur gérée. Elle sera remontée jusqu'au bloc try du routeur !
         throw new Exception('Impossible d\'ajouter le commentaire !');
     }
-    
     else {
         header('Location: index.php?action=post&id=' . $postId);
     }
