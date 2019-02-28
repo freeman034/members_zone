@@ -42,7 +42,7 @@ try { // On essaie de faire des choses
         }
         elseif ($_GET['action'] == 'editComment')
         {
-            if (isset($_GET['id']) && $_GET['id'] > 0)
+            if (isset($_GET['commentid']) && $_GET['commentid'] > 0)
             {
                 editComment();
             }
@@ -50,6 +50,26 @@ try { // On essaie de faire des choses
             {
                 // Autre exception
                 throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+        elseif ($_GET['action'] == 'modifyComment')
+        {
+            if (isset($_GET['commentid']) && $_GET['commentid'] > 0)
+            {
+                if (!empty($_POST['auteur']) && !empty($_POST['commentaire']))
+                {
+                    modifyComment();
+                }
+                else
+                {
+                  // Autre exception
+                  throw new Exception('Tous les champs ne sont pas remplis !');
+                }
+            }
+            else
+            {
+                  // Autre exception
+                  throw new Exception('Aucun identifiant de billet envoyé');
             }
         }
     }

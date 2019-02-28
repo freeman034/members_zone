@@ -44,7 +44,19 @@ function editComment()
     $commentManager = new freeman034\members_zone\Model\CommentManager();
 
     $post = $postManager->getPost($_GET['id']);
-    $comment = $commentManager->editComment($_GET['id']);
+    $comment = $commentManager->editComment($_GET['commentid']);
+
+    require('view/frontend/editcommentView.php');
+}
+
+function modifyComment()
+{
+    $postManager = new freeman034\members_zone\Model\PostManager();
+    $commentManager = new freeman034\members_zone\Model\CommentManager();
+
+    $post = $postManager->getPost($_GET['id']);
+    $commentManager->modifyComment($_GET['commentid'], $_POST['auteur'], $_POST['commentaire']);
+    $comment = $commentManager->editComment($_GET['commentid']);
 
     require('view/frontend/editcommentView.php');
 }

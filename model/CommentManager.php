@@ -24,13 +24,22 @@ class CommentManager extends Manager
         return $affectedLines;
     }
 
-    public function editComment($postId)
+    public function editComment($commentId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT auteur, commentaire FROM commentaires WHERE id_billet = ?');
-        $req->execute(array($postId));
+        $req = $db->prepare('SELECT auteur, commentaire FROM commentaires WHERE id = ?');
+        $req->execute(array($commentId));
         $comment = $req->fetch();
 
         return $comment;
+    }
+
+    public function modifyComment($commentId, $auteur, $commentaire)
+    {
+        $db = $this->dbConnect();
+        $comment = $db->prepare('UPDATE commentaires SET auteur = ?, commentaire = ?, date_commentaire = NOW() WHERE id = ?');
+        $affectedLines = $comment->execute(array($auteur, $commentaire, $commentId));
+
+        return $affectedLines;
     }
 }
